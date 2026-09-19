@@ -656,10 +656,21 @@ def run_full_pipeline(variant="2", is_auto=None):
 
     # Automatically scan all open tabs and switch to the IDE tab
     print("\n[*] Ensuring browser is on the NeoColab IDE tab...")
-    if not ensure_ide_tab(driver, max_retries=3):
-        print("[!] Please open and log into NeoColab in Chrome, then press Enter.")
-        input("Press [ENTER] when NeoColab IDE is ready in Chrome: ")
-        ensure_ide_tab(driver, max_retries=10)
+    if not ensure_ide_tab(driver, max_retries=2):
+        print("[!] Please log into your NeoColab account in Chrome, then press Enter.")
+        input("Press [ENTER] when you are logged into NeoColab: ")
+
+    # If currently on Dashboard, automatically open the Single File Compiler IDE
+    try:
+        curr_url = driver.current_url.lower()
+        if "dashboard" in curr_url or "/ide" not in curr_url:
+            print("[*] Dashboard detected! Navigating to NeoColab IDE...")
+            driver.get(DEFAULT_URL)
+            time.sleep(3)
+    except Exception:
+        pass
+
+    ensure_ide_tab(driver, max_retries=15)
 
     # Automatically ensure language is set to Python 3.8
     switch_language_to_python(driver)
