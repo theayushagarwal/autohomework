@@ -668,24 +668,20 @@ def run_full_pipeline(variant=None, is_auto=None):
     # Automatically ensure language is set to Python 3.8
     switch_language_to_python(driver)
 
-    # Variant selection
+    # Variant selection (Baseline is private to Ayush - friends get Style A or Style B)
     if not variant:
         print("\nSelect Code Solution Variant:")
-        print("  [1] Variant 1: Baseline Student Code (Direct & concise)")
-        print("  [2] Variant 2: Alternative Student Style A (Different variables, alternative loops & test data)")
-        print("  [3] Variant 3: Alternative Student Style B (Modular style, distinct string formatting & expressions)")
-        v_choice = input("Enter choice [1, 2, or 3, default: 1]: ").strip()
-        variant = v_choice if v_choice in ['1', '2', '3'] else '1'
+        print("  [1] Style A (Variant 2: Different variables, alternative loops & test data)")
+        print("  [2] Style B (Variant 3: Modular style, distinct string formatting & expressions)")
+        v_choice = input("Enter choice [1 or 2, default: 1]: ").strip()
+        variant = '3' if v_choice == '2' else '2'
 
-    if variant == '2':
-        sol_dir = BASE_DIR / "solutions_variant2"
-        print("[✓] Using CODE VARIANT 2 (Alternative Student Style A)")
-    elif variant == '3':
+    if str(variant).lower() in ['3', 'b']:
         sol_dir = BASE_DIR / "solutions_variant3"
-        print("[✓] Using CODE VARIANT 3 (Alternative Student Style B)")
+        print("[✓] Using CODE VARIANT: Style B (solutions_variant3)")
     else:
-        sol_dir = BASE_DIR / "solutions"
-        print("[✓] Using CODE VARIANT 1 (Baseline Student Code)")
+        sol_dir = BASE_DIR / "solutions_variant2"
+        print("[✓] Using CODE VARIANT: Style A (solutions_variant2)")
 
     # Mode selection
     if is_auto is None:
@@ -769,7 +765,7 @@ def run_full_pipeline(variant=None, is_auto=None):
 if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser(description="NeoColab Auto-Solver and Screenshot Bot")
-    parser.add_argument("--variant", "-v", choices=["1", "2", "3"], default=None, help="Code variant (1: Standard, 2: Style A, 3: Style B)")
+    parser.add_argument("--variant", "-v", choices=["2", "3", "A", "B", "a", "b"], default=None, help="Code variant (2/A: Style A, 3/B: Style B)")
     parser.add_argument("--auto", action="store_true", help="Run fully automatic hands-free")
     args = parser.parse_args()
     run_full_pipeline(variant=args.variant, is_auto=True if args.auto else None)

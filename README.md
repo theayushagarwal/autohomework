@@ -26,15 +26,14 @@ pip install -r requirements.txt
 python full_auto_neocolab.py
 
 # Or specify a code variant directly:
-python full_auto_neocolab.py --variant 1   # Baseline student code (Ayush's style)
-python full_auto_neocolab.py --variant 2   # Alternative style A (different variables, loops & test data)
-python full_auto_neocolab.py --variant 3   # Alternative style B (modular logic & distinct expressions)
+python full_auto_neocolab.py --variant 2   # Style A (different variables, loops & test data)
+python full_auto_neocolab.py --variant 3   # Style B (modular logic & distinct expressions)
 ```
 
 ### What Happens Next:
 1. Google Chrome opens automatically with a dedicated profile.
 2. Log into your NeoColab account in that Chrome browser once.
-3. In your terminal, choose your code variant (1, 2, or 3) and automation mode (`1` for Fully Automatic).
+3. In your terminal, choose your code variant (`1` for Style A, `2` for Style B) and automation mode (`1` for Fully Automatic).
 4. The bot will automatically:
    - Find and activate the Single File Compiler tab
    - Ensure Python (3.8) is selected
