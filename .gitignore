@@ -1,5 +1,7 @@
-﻿.env
+.env
 __pycache__/
 *.pyc
 scratch/
 lab_screenshots/
+*.pdf
+*.docx

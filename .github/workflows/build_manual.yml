@@ -1,0 +1,117 @@
+name: Build Lab Manual & Watermarked PDF
+
+on:
+  workflow_dispatch:
+    inputs:
+      student_name:
+        description: 'Student Name for Header & Watermark'
+        required: true
+        default: 'Ayush Agarwal'
+      theme:
+        description: 'Visual Color Theme'
+        type: choice
+        options:
+          - auto
+          - navy
+          - emerald
+          - burgundy
+          - slate
+          - indigo
+          - amber
+        default: auto
+      font:
+        description: 'Typography Font Family'
+        type: choice
+        options:
+          - auto
+          - arial
+          - calibri
+          - times
+          - segoe
+          - georgia
+        default: auto
+      header_style:
+        description: 'Page Header Style'
+        type: choice
+        options:
+          - auto
+          - classic
+          - formal
+          - modern
+          - minimal
+        default: auto
+
+  push:
+    branches:
+      - main
+    paths:
+      - 'lab_screenshots/**'
+      - 'build_submission_document.py'
+
+jobs:
+  build-manual:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Install LibreOffice & Fonts (for DOCX to PDF conversion)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            libreoffice-writer \
+            libreoffice-calc \
+            fonts-dejavu-core \
+            fonts-liberation \
+            fonts-noto-core
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Generate Word Document & Watermarked PDF
+        run: |
+          STUDENT_NAME="${{ inputs.student_name }}"
+          THEME="${{ inputs.theme }}"
+          FONT="${{ inputs.font }}"
+          HEADER_STYLE="${{ inputs.header_style }}"
+
+          if [ -z "$STUDENT_NAME" ]; then
+            STUDENT_NAME="Ayush Agarwal"
+          fi
+          if [ -z "$THEME" ]; then
+            THEME="auto"
+          fi
+          if [ -z "$FONT" ]; then
+            FONT="auto"
+          fi
+          if [ -z "$HEADER_STYLE" ]; then
+            HEADER_STYLE="auto"
+          fi
+
+          echo "Building manual for: $STUDENT_NAME"
+          echo "Theme: $THEME | Font: $FONT | Header: $HEADER_STYLE"
+
+          python build_submission_document.py \
+            --name "$STUDENT_NAME" \
+            --theme "$THEME" \
+            --font "$FONT" \
+            --header-style "$HEADER_STYLE"
+
+      - name: Upload Submission Documents (PDF & Word)
+        uses: actions/upload-artifact@v4
+        with:
+          name: Python_Lab_Manual_${{ inputs.student_name || 'Ayush_Agarwal' }}
+          path: |
+            Python_Lab_Manual_Submission.pdf
+            Python_Lab_Manual_Submission.docx
+          retention-days: 14
+

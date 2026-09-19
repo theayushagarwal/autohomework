@@ -42,8 +42,9 @@ GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "")
 MODEL_NAME = "gemini-2.5-flash"
 DEFAULT_URL = "https://vitvellore312.examly.io/ide"
 
-# Output directory for screenshots
-SCREENSHOT_DIR = Path("lab_screenshots")
+# Directories relative to script location
+BASE_DIR = Path(__file__).resolve().parent
+SCREENSHOT_DIR = BASE_DIR / "lab_screenshots"
 SCREENSHOT_DIR.mkdir(exist_ok=True)
 
 genai.configure(api_key=GEMINI_API_KEY)
@@ -274,10 +275,16 @@ LAB_QUESTIONS = [
         "text": "Write a python program using loops to print the denomination of a given amount."
     },
     {
-        "id": "Ex8_Q2_Patterns",
-        "title": "Exercise 8 - Q2: Number and Star Patterns",
+        "id": "Ex8_Q2_NumberPattern",
+        "title": "Exercise 8 - Q2: Descending Number Pattern",
         "image": "questions/ex_page_7.png",
-        "text": "Write a python program using loops to print descending number pattern and star pyramid pattern."
+        "text": "Write a python program using loops to print descending number pattern: 5 4 3 2 1 down to 1."
+    },
+    {
+        "id": "Ex8_Q3_StarPattern",
+        "title": "Exercise 8 - Q3: Star Pyramid Pattern",
+        "image": "questions/ex_page_7.png",
+        "text": "Write a python program using loops to print star pyramid pattern: *, ***, *****, *******."
     }
 ]
 
@@ -640,7 +647,7 @@ def scroll_to_output_and_wait(driver, max_wait: int = 15):
     time.sleep(1)
 
 
-def run_full_pipeline():
+def run_full_pipeline(variant=None, is_auto=None):
     print("=" * 65)
     print("    NEOCOLAB AUTO-SOLVER, PASTER & SCREENSHOT BOT    ")
     print("=" * 65)
@@ -661,12 +668,32 @@ def run_full_pipeline():
     # Automatically ensure language is set to Python 3.8
     switch_language_to_python(driver)
 
+    # Variant selection
+    if not variant:
+        print("\nSelect Code Solution Variant:")
+        print("  [1] Variant 1: Baseline Student Code (Direct & concise)")
+        print("  [2] Variant 2: Alternative Student Style A (Different variables, alternative loops & test data)")
+        print("  [3] Variant 3: Alternative Student Style B (Modular style, distinct string formatting & expressions)")
+        v_choice = input("Enter choice [1, 2, or 3, default: 1]: ").strip()
+        variant = v_choice if v_choice in ['1', '2', '3'] else '1'
+
+    if variant == '2':
+        sol_dir = BASE_DIR / "solutions_variant2"
+        print("[✓] Using CODE VARIANT 2 (Alternative Student Style A)")
+    elif variant == '3':
+        sol_dir = BASE_DIR / "solutions_variant3"
+        print("[✓] Using CODE VARIANT 3 (Alternative Student Style B)")
+    else:
+        sol_dir = BASE_DIR / "solutions"
+        print("[✓] Using CODE VARIANT 1 (Baseline Student Code)")
+
     # Mode selection
-    print("\nSelect Automation Mode:")
-    print("  [1] Fully Automatic (Runs all 29 questions hands-free with 3s delay — Recommended!)")
-    print("  [2] Step-by-Step (Waits for you to hit [ENTER] per question — zero rush!)")
-    mode_choice = input("Enter choice [1 or 2, default: 1]: ").strip()
-    is_auto = (mode_choice != '2')
+    if is_auto is None:
+        print("\nSelect Automation Mode:")
+        print("  [1] Fully Automatic (Runs all 30 questions hands-free with 3s delay — Recommended!)")
+        print("  [2] Step-by-Step (Waits for you to hit [ENTER] per question — zero rush!)")
+        mode_choice = input("Enter choice [1 or 2, default: 1]: ").strip()
+        is_auto = (mode_choice != '2')
 
     if is_auto:
         print("[✓] Running in FULLY AUTOMATIC mode. Sit back and watch it run!")
@@ -685,7 +712,7 @@ def run_full_pipeline():
         ensure_ide_tab(driver)
 
         # 1. Load solution code (cached from disk - instant, zero API cost)
-        cached_file = Path("solutions") / f"{q_id}.py"
+        cached_file = sol_dir / f"{q_id}.py"
         if cached_file.exists():
             print(f"[✓] Loading solution from disk ({cached_file.name}) — 0 comments, authentic student code!")
             code = clean_code(cached_file.read_text(encoding="utf-8"))
@@ -734,11 +761,16 @@ def run_full_pipeline():
                 break
 
     print("\n" + "=" * 65)
-    print("ALL 29 QUESTIONS COMPLETED!")
+    print("ALL 30 QUESTIONS COMPLETED!")
     print(f"Screenshots saved to: {SCREENSHOT_DIR.resolve()}")
     print("=" * 65)
 
 
 if __name__ == "__main__":
-    run_full_pipeline()
+    import argparse
+    parser = argparse.ArgumentParser(description="NeoColab Auto-Solver and Screenshot Bot")
+    parser.add_argument("--variant", "-v", choices=["1", "2", "3"], default=None, help="Code variant (1: Standard, 2: Style A, 3: Style B)")
+    parser.add_argument("--auto", action="store_true", help="Run fully automatic hands-free")
+    args = parser.parse_args()
+    run_full_pipeline(variant=args.variant, is_auto=True if args.auto else None)
 

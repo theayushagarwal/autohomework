@@ -22,22 +22,76 @@ pip install -r requirements.txt
 
 ### Step 3: Run the Bot
 ```bash
+# Run with interactive variant selection:
 python full_auto_neocolab.py
+
+# Or specify a code variant directly:
+python full_auto_neocolab.py --variant 1   # Baseline student code (Ayush's style)
+python full_auto_neocolab.py --variant 2   # Alternative style A (different variables, loops & test data)
+python full_auto_neocolab.py --variant 3   # Alternative style B (modular logic & distinct expressions)
 ```
 
 ### What Happens Next:
 1. Google Chrome opens automatically with a dedicated profile.
 2. Log into your NeoColab account in that Chrome browser once.
-3. In your terminal, type `1` (Fully Automatic) and press Enter.
+3. In your terminal, choose your code variant (1, 2, or 3) and automation mode (`1` for Fully Automatic).
 4. The bot will automatically:
    - Find and activate the Single File Compiler tab
    - Ensure Python (3.8) is selected
-   - Inject the solution directly into the editor
+   - Inject the selected variant solution directly into the editor
    - Take the code screenshot
    - Click "Compile & Run"
    - Take the output screenshot
-   - Repeat hands-free for all 29 questions!
-5. All 58 screenshots will be neatly organized in the `lab_screenshots/` folder.
+   - Repeat hands-free for all 30 questions!
+5. All 60 screenshots will be neatly organized in the `lab_screenshots/` folder.
+
+---
+
+## 📄 Generate Complete Lab Manual & Watermarked PDF
+
+After screenshots are taken (or using the pre-bundled screenshots):
+
+### Option A: Run Locally in Terminal
+Generate both the formatted Microsoft Word document (`.docx`) and the watermarked PDF (`.pdf`) with your custom name, color theme, and font:
+
+```bash
+# Generate for Ayush (Classic Academic Navy + Arial):
+python build_submission_document.py --name "Ayush Agarwal"
+
+# Generate for a friend (Automatic unique theme, font, and watermark angle by default!):
+python build_submission_document.py --name "Rahul Verma"
+
+# Or pick specific themes and typography:
+python build_submission_document.py --name "Rohan Sharma" --theme emerald --font calibri
+python build_submission_document.py --name "Priya Patel" --theme burgundy --font georgia
+python build_submission_document.py --name "Aditya Rao" --theme slate --font segoe
+```
+
+**Available Visual Themes**:
+- `navy` (Classic Academic Deep Navy - Ayush's baseline)
+- `emerald` (Forest Green & Mint)
+- `burgundy` (Crimson Wine & Rose)
+- `slate` (Modern Tech Charcoal & Slate)
+- `indigo` (Royal Indigo & Lavender)
+- `amber` (Warm Amber Bronze)
+
+**Available Fonts**: `calibri`, `times` (Times New Roman), `segoe` (Segoe UI), `georgia`, `arial`.
+
+---
+
+### Option B: 100% Automated on GitHub (Zero Setup for Friends!)
+No Python or Microsoft Office required! Anyone who has access to the GitHub repository can generate their custom manual in the cloud:
+
+1. Go to the repository on GitHub (`https://github.com/theayushagarwal/autohomework`).
+2. Click on the **Actions** tab at the top.
+3. Select **Build Lab Manual & Watermarked PDF** from the left sidebar.
+4. Click **Run workflow**:
+   - Type your **Name** (e.g. `Rahul Verma`)
+   - Select your favorite **Theme** (`auto`, `emerald`, `burgundy`, `slate`, `indigo`, etc.)
+   - Select your preferred **Font** (`auto`, `calibri`, `times`, `georgia`, `segoe`)
+   - Select your **Header Style** (`auto`, `classic`, `formal`, `modern`, `minimal`)
+5. Click the green **Run workflow** button.
+6. In under 1 minute, the build will finish. Click the completed run and download the **Python_Lab_Manual_<Your_Name>** ZIP artifact containing your ready-to-submit PDF and Word documents!
 
 ---
 
