@@ -135,9 +135,10 @@ python gemini_autocode.py question.png
 
 ## 4. How It Bypasses Examly's Quirks
 
-1. **Monaco API Injection**: Instead of slow `.send_keys()` which messes up indentation and triggers auto-closing brackets, it runs:
+1. **Ace Editor API Injection**: Instead of slow `.send_keys()` which messes up indentation and triggers auto-closing brackets, it accesses Examly's Ace instance directly:
    ```javascript
-   window.monaco.editor.getModels()[0].setValue(code);
+   var ed = document.getElementById('programming-answer-ttAnswerEditor1') || document.querySelector('.ace_editor');
+   ed.env.editor.setValue(code, 1);
    ```
 2. **Listener Disarming**: Disarms `onpaste` event blockers on `window` and `document` so clipboard pasting works smoothly.
-3. **Clipboard Fallback**: Uses `pyperclip` and Selenium ActionChains (`Ctrl+A` -> `Backspace` -> `Ctrl+V`) if the JS API is unreachable.
+3. **Editor Auto-Reset & Scroll**: Automatically clears previous output and scrolls the code view to line 1 (`ed.env.editor.scrollToLine(1)`) so every screenshot is crisp and centered.
