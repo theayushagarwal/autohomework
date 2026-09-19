@@ -643,56 +643,29 @@ def scroll_to_output_and_wait(driver, max_wait: int = 15):
     time.sleep(1)
 
 
-def run_full_pipeline(variant=None, is_auto=None):
+def run_full_pipeline(variant="2"):
     print("=" * 65)
     print("    NEOCOLAB AUTO-SOLVER, PASTER & SCREENSHOT BOT    ")
     print("=" * 65)
 
     driver = setup_browser()
 
-    # Check if IDE tab is already active and logged in
-    print("\n[*] Checking for active NeoColab IDE session...")
-    if not ensure_ide_tab(driver, max_retries=2):
-        print("\n" + "=" * 65)
-        print("    [!] LOGIN REQUIRED IN CHROME")
-        print("=" * 65)
-        print("  1. In the Chrome window that just opened, log into your NeoColab account.")
-        print("  2. Enter your email, password, OTP, etc. (take your time!).")
-        print("  3. Make sure the Single File Compiler / IDE is open on your screen.")
-        print("=" * 65)
-        input("  >>> Press [ENTER] here once you are logged in and inside the IDE: ")
-
-        if not ensure_ide_tab(driver, max_retries=8):
-            print("[*] Navigating to Single File Compiler IDE...")
-            driver.get(DEFAULT_URL)
-            time.sleep(3)
-            ensure_ide_tab(driver, max_retries=8)
+    # Automatically scan all open tabs and switch to the IDE tab
+    print("\n[*] Ensuring browser is on the NeoColab IDE tab...")
+    if not ensure_ide_tab(driver, max_retries=3):
+        print("[!] Please open and log into NeoColab in Chrome, then press Enter.")
+        input("Press [ENTER] when NeoColab IDE is ready in Chrome: ")
+        ensure_ide_tab(driver, max_retries=10)
 
     # Automatically ensure language is set to Python 3.8
     switch_language_to_python(driver)
 
-    # Variant selection (Baseline is private to Ayush - friends get Style A or Style B)
-    if not variant:
-        print("\nSelect Code Solution Variant:")
-        print("  [1] Style A (Variant 2: Different variables, alternative loops & test data)")
-        print("  [2] Style B (Variant 3: Modular style, distinct string formatting & expressions)")
-        v_choice = input("Enter choice [1 or 2, default: 1]: ").strip()
-        variant = '3' if v_choice == '2' else '2'
-
-    if str(variant).lower() in ['3', 'b']:
-        sol_dir = BASE_DIR / "solutions_variant3"
-        print("[✓] Using CODE VARIANT: Style B (solutions_variant3)")
-    else:
-        sol_dir = BASE_DIR / "solutions_variant2"
-        print("[✓] Using CODE VARIANT: Style A (solutions_variant2)")
-
     # Mode selection
-    if is_auto is None:
-        print("\nSelect Automation Mode:")
-        print("  [1] Fully Automatic (Runs all 30 questions hands-free with 3s delay — Recommended!)")
-        print("  [2] Step-by-Step (Waits for you to hit [ENTER] per question — zero rush!)")
-        mode_choice = input("Enter choice [1 or 2, default: 1]: ").strip()
-        is_auto = (mode_choice != '2')
+    print("\nSelect Automation Mode:")
+    print("  [1] Fully Automatic (Runs all 30 questions hands-free with 3s delay — Recommended!)")
+    print("  [2] Step-by-Step (Waits for you to hit [ENTER] per question — zero rush!)")
+    mode_choice = input("Enter choice [1 or 2, default: 1]: ").strip()
+    is_auto = (mode_choice != '2')
 
     if is_auto:
         print("[✓] Running in FULLY AUTOMATIC mode. Sit back and watch it run!")
@@ -700,6 +673,10 @@ def run_full_pipeline(variant=None, is_auto=None):
         print("[✓] Running in STEP-BY-STEP mode. Press Enter when you want to proceed.")
 
     total_q = len(LAB_QUESTIONS)
+
+    # Solutions directory: Style A (variant 2) by default, or Style B (variant 3)
+    sol_dir = BASE_DIR / "solutions_variant3" if str(variant) == "3" else BASE_DIR / "solutions_variant2"
+    print(f"[✓] Loading solutions from: {sol_dir.name}\n")
 
     for i, q in enumerate(LAB_QUESTIONS):
         q_id = q["id"]
