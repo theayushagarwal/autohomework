@@ -14,7 +14,10 @@ Full Auto NeoColab / Examly Lab Runner
 import os
 import sys
 import time
+import warnings
 from pathlib import Path
+
+warnings.filterwarnings("ignore")
 
 # Ensure UTF-8 output on Windows terminal
 if sys.platform == "win32":
@@ -643,11 +646,12 @@ def scroll_to_output_and_wait(driver, max_wait: int = 15):
     time.sleep(1)
 
 
-def run_full_pipeline(variant="2"):
+def run_full_pipeline(variant="2", is_auto=None):
     print("=" * 65)
     print("    NEOCOLAB AUTO-SOLVER, PASTER & SCREENSHOT BOT    ")
     print("=" * 65)
 
+    variant = variant or "2"
     driver = setup_browser()
 
     # Automatically scan all open tabs and switch to the IDE tab
@@ -661,11 +665,12 @@ def run_full_pipeline(variant="2"):
     switch_language_to_python(driver)
 
     # Mode selection
-    print("\nSelect Automation Mode:")
-    print("  [1] Fully Automatic (Runs all 30 questions hands-free with 3s delay — Recommended!)")
-    print("  [2] Step-by-Step (Waits for you to hit [ENTER] per question — zero rush!)")
-    mode_choice = input("Enter choice [1 or 2, default: 1]: ").strip()
-    is_auto = (mode_choice != '2')
+    if is_auto is None:
+        print("\nSelect Automation Mode:")
+        print("  [1] Fully Automatic (Runs all 30 questions hands-free with 3s delay — Recommended!)")
+        print("  [2] Step-by-Step (Waits for you to hit [ENTER] per question — zero rush!)")
+        mode_choice = input("Enter choice [1 or 2, default: 1]: ").strip()
+        is_auto = (mode_choice != '2')
 
     if is_auto:
         print("[✓] Running in FULLY AUTOMATIC mode. Sit back and watch it run!")
