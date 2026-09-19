@@ -74,6 +74,14 @@ THEMES = {
     },
 }
 
+# Load local private personal themes if present on this machine (ignored by git)
+try:
+    from private_theme import PRIVATE_THEMES
+    THEMES.update(PRIVATE_THEMES)
+except ImportError:
+    pass
+
+
 FONTS = {
     "arial": "Arial",
     "calibri": "Calibri",
@@ -89,12 +97,12 @@ def resolve_style_for_student(student_name, theme="auto", font="auto", header_st
     header_keys = ["classic", "formal", "modern", "minimal"]
     
     if "ayush" in student_clean.lower():
-        sel_theme = "navy" if theme == "auto" else theme
-        sel_font = "arial" if font == "auto" else font
+        sel_theme = "monochrome" if ("monochrome" in THEMES and theme == "auto") else ("navy" if theme == "auto" else theme)
+        sel_font = "times" if font == "auto" else font
         sel_header = "classic" if header_style == "auto" else header_style
     else:
-        # Friends get distinct non-navy themes and distinct fonts automatically
-        friend_themes = ["emerald", "burgundy", "slate", "indigo", "amber"]
+        # Friends get distinct non-monochrome themes and distinct fonts automatically
+        friend_themes = ["emerald", "burgundy", "slate", "indigo", "amber", "navy"]
         friend_fonts = ["calibri", "times", "segoe", "georgia"]
         
         sel_theme = friend_themes[seed % len(friend_themes)] if theme == "auto" else theme
@@ -102,6 +110,8 @@ def resolve_style_for_student(student_name, theme="auto", font="auto", header_st
         sel_header = header_keys[(seed // 11) % len(header_keys)] if header_style == "auto" else header_style
 
     sel_theme = sel_theme.lower()
+    if sel_theme in ("black", "white", "classic", "bw", "b&w") and "monochrome" in THEMES:
+        sel_theme = "monochrome"
     if sel_theme not in THEMES:
         sel_theme = "navy"
     sel_font = sel_font.lower()

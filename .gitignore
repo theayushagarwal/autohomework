@@ -6,3 +6,7 @@ lab_screenshots/
 *.pdf
 *.docx
 solutions/
+private_theme.py
+local_*.py
+local_config.py
+

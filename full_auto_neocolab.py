@@ -759,7 +759,14 @@ def run_full_pipeline(variant="2", is_auto=None):
     print("    NEOCOLAB AUTO-SOLVER, PASTER & SCREENSHOT BOT    ")
     print("=" * 65)
 
-    variant = variant or "2"
+    if variant is None:
+        print("\nSelect Code Style Variant:")
+        print("  [1] Baseline (Ayush - Classic Personal)")
+        print("  [2] Style A (Standard Student)")
+        print("  [3] Style B (Alternative Student)")
+        v_choice = input("Enter variant choice [1, 2, or 3, default: 1]: ").strip()
+        variant = v_choice if v_choice in ("1", "2", "3") else "1"
+
     driver = setup_browser()
 
     # Automatically scan all open tabs and switch to the IDE tab
@@ -798,8 +805,13 @@ def run_full_pipeline(variant="2", is_auto=None):
 
     total_q = len(LAB_QUESTIONS)
 
-    # Solutions directory: Style A (variant 2) by default, or Style B (variant 3)
-    sol_dir = BASE_DIR / "solutions_variant3" if str(variant) == "3" else BASE_DIR / "solutions_variant2"
+    # Solutions directory: Baseline (1), Style A (2), or Style B (3)
+    if str(variant).lower() in ("1", "baseline", "base", "ayush"):
+        sol_dir = BASE_DIR / "solutions"
+    elif str(variant).lower() in ("3", "b"):
+        sol_dir = BASE_DIR / "solutions_variant3"
+    else:
+        sol_dir = BASE_DIR / "solutions_variant2"
     print(f"[✓] Loading solutions from: {sol_dir.name}\n")
 
     for i, q in enumerate(LAB_QUESTIONS):
@@ -878,7 +890,7 @@ def run_full_pipeline(variant="2", is_auto=None):
 if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser(description="NeoColab Auto-Solver and Screenshot Bot")
-    parser.add_argument("--variant", "-v", choices=["2", "3", "A", "B", "a", "b"], default=None, help="Code variant (2/A: Style A, 3/B: Style B)")
+    parser.add_argument("--variant", "-v", choices=["1", "2", "3", "A", "B", "a", "b", "baseline", "base"], default=None, help="Code variant (1: Baseline, 2/A: Style A, 3/B: Style B)")
     parser.add_argument("--auto", action="store_true", help="Run fully automatic hands-free")
     args = parser.parse_args()
     run_full_pipeline(variant=args.variant, is_auto=True if args.auto else None)
