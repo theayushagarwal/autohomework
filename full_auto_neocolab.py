@@ -375,28 +375,35 @@ def setup_browser():
     return driver
 
 
-def ensure_ide_tab(driver, max_retries: int = 15) -> bool:
+def ensure_ide_tab(driver, max_retries: int = 6) -> bool:
     """
     Scans all open tabs across Chrome windows.
     Automatically finds, switches to, and brings the NeoColab Single File Compiler IDE tab to the front.
-    Never takes screenshots or pastes on the wrong tab!
+    Never interrupts login flow or reloads pages!
     """
     for attempt in range(max_retries):
-        handles = driver.window_handles
-        for i, handle in enumerate(handles):
+        try:
+            handles = driver.window_handles
+        except Exception:
+            time.sleep(1)
+            continue
+
+        for handle in handles:
             try:
                 driver.switch_to.window(handle)
-                url = driver.current_url.lower()
-
                 is_ide = driver.execute_script("""
+                    var href = window.location.href.toLowerCase();
                     var hasEditor = Boolean(
                         document.getElementById('programming-answer-ttAnswerEditor1') ||
                         document.querySelector('[id*="AnswerEditor"]') ||
                         document.querySelector('.ace_editor')
                     );
                     var isCompiler = (document.body.innerText || '').includes('Single File Compiler');
-                    var isLogin = window.location.href.includes('/login');
-                    return (hasEditor || isCompiler) && !isLogin;
+                    var isAuth = href.includes('/login') || 
+                                 href.includes('accounts.google') || 
+                                 href.includes('google.com') || 
+                                 href.includes('oauth');
+                    return (hasEditor || isCompiler) && !isAuth;
                 """)
 
                 if is_ide:
@@ -409,18 +416,7 @@ def ensure_ide_tab(driver, max_retries: int = 15) -> bool:
             except Exception:
                 continue
 
-        # If not found on current open tabs, check if there is a login page
-        curr_url = driver.current_url.lower()
-        if "/login" in curr_url:
-            print(f"[!] Currently on Login page. Please log in to your NeoColab account in Chrome! (Waiting... attempt {attempt+1}/{max_retries})")
-        else:
-            print(f"[*] Searching open tabs for NeoColab Single File Compiler... (attempt {attempt+1}/{max_retries})")
-            try:
-                driver.get(DEFAULT_URL)
-            except Exception:
-                pass
-
-        time.sleep(2)
+        time.sleep(1)
 
     return False
 
@@ -654,16 +650,23 @@ def run_full_pipeline(variant=None, is_auto=None):
 
     driver = setup_browser()
 
-    # Automatically scan all open tabs and switch to the IDE tab
-    print("\n[*] Ensuring browser is on the NeoColab IDE tab...")
-    if not ensure_ide_tab(driver):
-        print("[!] Could not find NeoColab IDE tab. Navigating to IDE...")
-        driver.get(DEFAULT_URL)
-        time.sleep(3)
-        if not ensure_ide_tab(driver):
-            print("[!] Please open and log into NeoColab in Chrome, then press Enter.")
-            input("Press [ENTER] when NeoColab IDE is ready in Chrome: ")
-            ensure_ide_tab(driver)
+    # Check if IDE tab is already active and logged in
+    print("\n[*] Checking for active NeoColab IDE session...")
+    if not ensure_ide_tab(driver, max_retries=2):
+        print("\n" + "=" * 65)
+        print("    [!] LOGIN REQUIRED IN CHROME")
+        print("=" * 65)
+        print("  1. In the Chrome window that just opened, log into your NeoColab account.")
+        print("  2. Enter your email, password, OTP, etc. (take your time!).")
+        print("  3. Make sure the Single File Compiler / IDE is open on your screen.")
+        print("=" * 65)
+        input("  >>> Press [ENTER] here once you are logged in and inside the IDE: ")
+
+        if not ensure_ide_tab(driver, max_retries=8):
+            print("[*] Navigating to Single File Compiler IDE...")
+            driver.get(DEFAULT_URL)
+            time.sleep(3)
+            ensure_ide_tab(driver, max_retries=8)
 
     # Automatically ensure language is set to Python 3.8
     switch_language_to_python(driver)
