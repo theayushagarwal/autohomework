@@ -838,6 +838,26 @@ def create_lab_manual(student_name="Ayush Agarwal", theme="auto", font="auto", h
         print(f"[*] Applying watermark overlay for '{student_name.upper()}' (Theme: {chosen_theme}, Angle: {chosen_angle}°)...")
         apply_pdf_watermark(out_pdf, student_name.upper(), theme_cfg=theme_cfg, angle=chosen_angle)
 
+    # Automatically copy directly to the user's Downloads folder for instant access
+    import shutil
+    downloads_dir = Path.home() / "Downloads"
+    try:
+        downloads_dir.mkdir(parents=True, exist_ok=True)
+        clean_name = "".join(c for c in student_name if c.isalnum() or c in (" ", "_", "-")).strip().replace(" ", "_")
+        dl_pdf = downloads_dir / f"Python_Lab_Manual_{clean_name}.pdf"
+        dl_docx = downloads_dir / f"Python_Lab_Manual_{clean_name}.docx"
+        shutil.copy2(str(out_docx), str(dl_docx))
+        if out_pdf.exists():
+            shutil.copy2(str(out_pdf), str(dl_pdf))
+        print(f"\n" + "=" * 60)
+        print(f"[✓] COPIED TO YOUR DOWNLOADS FOLDER:")
+        if out_pdf.exists():
+            print(f"    📄 PDF : {dl_pdf.resolve()}")
+        print(f"    📝 DOCX: {dl_docx.resolve()}")
+        print("=" * 60 + "\n")
+    except Exception as e:
+        print(f"[!] Could not copy to Downloads: {e}")
+
 if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser(description="Generate Python Lab Manual Submission with Custom Themes and Watermarks")
