@@ -1,9 +1,8 @@
-item1_cost = 250.0
-item2_cost = 40.0
-print("Item 1:", item1_cost, "| Item 2:", item2_cost)
-print("Sum           :", item1_cost + item2_cost)
-print("Difference    :", item1_cost - item2_cost)
-print("Multiplication:", item1_cost * item2_cost)
-print("True Division :", item1_cost / item2_cost)
-print("Modulus       :", item1_cost % item2_cost)
-print("Floor Div     :", item1_cost // item2_cost)
+p1 = int(input())
+p2 = int(input())
+print("Total price:", p1 + p2)
+print("Price difference:", max(p1, p2) - min(p1, p2))
+print("Product of the prices:", p1 * p2)
+print("Division of the first price by second price:", p1 / p2)
+print("Remainder:", p1 % p2)
+print("Floor division:", p1 // p2)

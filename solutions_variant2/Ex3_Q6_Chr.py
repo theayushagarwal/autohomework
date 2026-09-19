@@ -1,2 +1,5 @@
-for num in (65, 97, 48, 36, 90):
-    print("ASCII Code:", num, "-> Character:", chr(num))
+print(chr(65))
+print(chr(97))
+print(chr(48))
+print(chr(36))
+print(chr(90))

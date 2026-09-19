@@ -1,7 +1,6 @@
-msg = "Python Programming"
-print("Input:", msg)
-print("Python     ->", msg[:6])
-print("Programming->", msg[7:])
-print("gram       ->", msg[10:14])
-print("Pro        ->", msg[7:10])
-print("ming       ->", msg[14:])
+a = "Python Programming"
+print(a[0:6])
+print(a[-11:])
+print(a[-8:-4])
+print(a[-11:-8])
+print(a[-4:])

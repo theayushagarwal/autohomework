@@ -1,9 +1,7 @@
-cash = 5490
-print("Total Amount:", cash)
-denoms = [2000, 500, 200, 100, 50, 20, 10, 5, 2, 1]
-print("Denominations:")
-for note in denoms:
-    count = cash // note
-    if count:
-        print(f"Rs. {note:4d} : {count} note(s)")
-        cash %= note
+amount = int(input())
+print("Denomination breakdown:")
+notes = [2000, 500, 100, 50, 20, 10, 5, 2, 1]
+for n in notes:
+    while amount >= n:
+        print("Rs.", n)
+        amount -= n

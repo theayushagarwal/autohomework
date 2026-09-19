@@ -1,8 +1,9 @@
-n1, n2, n3 = 78, 42, 95
-print("Values:", n1, n2, n3)
-largest = n1
-if n2 > largest:
-    largest = n2
-if n3 > largest:
-    largest = n3
-print("Largest value is:", largest)
+a = int(input())
+b = int(input())
+c = int(input())
+if (a > b and a > c):
+    print("a is greatest")
+elif (b > a and b > c):
+    print("b is greatest")
+else:
+    print("c is greatest")

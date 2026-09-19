@@ -1,2 +1,5 @@
-for symbol in ('A', 'a', 'Z', '0', '@'):
-    print("Character:", symbol, "| Unicode/ASCII:", ord(symbol))
+print(ord("A"))
+print(ord("a"))
+print(ord("Z"))
+print(ord("0"))
+print(ord("@"))

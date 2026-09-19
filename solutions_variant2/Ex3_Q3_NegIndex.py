@@ -1,5 +1,4 @@
-city_name = "Vellore"
-print("Word:", city_name)
-print("Index -1 (Last)       :", city_name[-1])
-print("Index -2 (Second Last):", city_name[-2])
-print("Index -3 (Third Last) :", city_name[-3])
+a = "Vellore"
+print(a[-1])
+print(a[-2])
+print(a[-3])

@@ -1,4 +1,5 @@
-att = 88.0
-print(f"Recorded Attendance: {att}%")
-status = "Student is permitted" if att >= 75.0 else "Student not permitted"
-print(status)
+a = int(input())
+if a >= 75:
+    print("Student is permitted")
+else:
+    print("Student is not permitted")

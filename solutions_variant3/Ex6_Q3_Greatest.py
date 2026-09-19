@@ -1,9 +1,9 @@
-x, y, z = 34, 91, 56
-print(f"Three values: {x}, {y}, {z}")
-if x >= y and x >= z:
-    max_val = x
-elif y >= x and y >= z:
-    max_val = y
+a = int(input())
+b = int(input())
+c = int(input())
+if a >= b and a >= c:
+    print("a is greatest")
+elif b >= a and b >= c:
+    print("b is greatest")
 else:
-    max_val = z
-print(f"The maximum value is: {max_val}")
+    print("c is greatest")

@@ -1,7 +1,4 @@
-total_rows = 4
-r = 1
-while r <= total_rows:
-    spaces = " " * (total_rows - r)
-    stars = "*" * (2 * r - 1)
-    print(spaces + stars)
-    r += 1
+rows = 4
+for i in range(1, rows + 1):
+    print(" " * (rows - i), end="")
+    print("*" * (2 * i - 1))

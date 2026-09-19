@@ -107,187 +107,217 @@ LAB_QUESTIONS = [
         "id": "Ex2_a_IdentifyDatatype",
         "title": "Exercise 2 - Part A: Identify Data Types",
         "image": "questions/ex_page_1.png",
-        "text": "Identify the data types of given values: 25, 25.0, '25', 'Python', True, False, 3+4j, -18, 'True', 0.0, '3+4j', 0."
+        "text": "Identify the data types of given values: 25, 25.0, '25', 'Python', True, False, 3+4j, -18, 'True', 0.0, '3+4j', 0.",
+        "input": None
     },
     {
         "id": "Ex2_b_PredictOutput",
         "title": "Exercise 2 - Part B: Predict Output",
         "image": "questions/ex_page_1.png",
-        "text": "Predict output of variables, types, reassignments, complex numbers, and escape sequences."
+        "text": "Predict output of variables, types, reassignments, complex numbers, and escape sequences.",
+        "input": None
     },
     {
         "id": "Ex2_c_ValidVariables",
         "title": "Exercise 2 - Part C: Valid Variables",
         "image": "questions/ex_page_1.png",
-        "text": "Check which variables are valid and print values for name, city, cgpa, student, number, language."
+        "text": "Check which variables are valid and print values for name, city, cgpa, student, number, language.",
+        "input": None
     },
     {
         "id": "Ex2_d_CorrectErrors",
         "title": "Exercise 2 - Part D: Correct Errors",
         "image": "questions/ex_page_1.png",
-        "text": "Correct syntax errors in variable assignments and print statements."
+        "text": "Correct syntax errors in variable assignments and print statements.",
+        "input": None
     },
     {
         "id": "Ex2_e_HelloWorld",
         "title": "Exercise 2 - Part E: Hello World",
         "image": "questions/ex_page_1.png",
-        "text": "Write a simple python code to print 'Hello World'."
+        "text": "Write a simple python code to print 'Hello World'.",
+        "input": None
     },
     # Ex 3
     {
         "id": "Ex3_Q1_Chars",
         "title": "Exercise 3 - Q1: First, Fifth, Last Character",
         "image": "questions/ex_page_2.png",
-        "text": "Declare the string 'Python Programming' and print: 1. First character, 2. Fifth character, 3. Last character."
+        "text": "Declare the string 'Python Programming' and print: 1. First character, 2. Fifth character, 3. Last character.",
+        "input": None
     },
     {
         "id": "Ex3_Q2_Slicing",
         "title": "Exercise 3 - Q2: Slicing Python Programming",
         "image": "questions/ex_page_2.png",
-        "text": "Declare 'Python Programming'. Print using slicing: 'Python', 'Programming', 'gram', 'Pro', 'ming'."
+        "text": "Declare 'Python Programming'. Print using slicing: 'Python', 'Programming', 'gram', 'Pro', 'ming'.",
+        "input": None
     },
     {
         "id": "Ex3_Q3_NegIndex",
         "title": "Exercise 3 - Q3: Negative Indexing on Vellore",
         "image": "questions/ex_page_2.png",
-        "text": "Declare 'Vellore'. Print Last character, Second last character, Third last character using negative indexing."
+        "text": "Declare 'Vellore'. Print Last character, Second last character, Third last character using negative indexing.",
+        "input": None
     },
     {
         "id": "Ex3_Q4_PrintA",
         "title": "Exercise 3 - Q4: Print 'A' without typing 'A'",
         "image": "questions/ex_page_2.png",
-        "text": "Without typing the letter A anywhere in the program, print A."
+        "text": "Without typing the letter A anywhere in the program, print A.",
+        "input": None
     },
     {
         "id": "Ex3_Q5_ASCII",
         "title": "Exercise 3 - Q5: ASCII / Unicode Values",
         "image": "questions/ex_page_2.png",
-        "text": "Print the ASCII (Unicode) value of characters: 'A', 'a', 'Z', '0', '@'."
+        "text": "Print the ASCII (Unicode) value of characters: 'A', 'a', 'Z', '0', '@'.",
+        "input": None
     },
     {
         "id": "Ex3_Q6_Chr",
         "title": "Exercise 3 - Q6: Characters for ASCII Values",
         "image": "questions/ex_page_2.png",
-        "text": "Print the characters corresponding to ASCII values: 65, 97, 48, 36, 90."
+        "text": "Print the characters corresponding to ASCII values: 65, 97, 48, 36, 90.",
+        "input": None
     },
     # Ex 4
     {
         "id": "Ex4_Q1_BioCard",
         "title": "Exercise 4 - Q1: Student Bio Card",
         "image": "questions/ex_page_3.png",
-        "text": "Read Name, Age, Department, University, Mobile Number and display a formatted Student Bio Card."
+        "text": "Read Name, Age, Department, University, Mobile Number and display a formatted Student Bio Card.",
+        "input": "Rahul\n19\nCSE\nVIT\n9876543210"
     },
     {
         "id": "Ex4_Q2_SingleAssign",
         "title": "Exercise 4 - Q2: Single Assignment Statement",
         "image": "questions/ex_page_3.png",
-        "text": "Assign your name, age, and CGPA to three variables using a single assignment statement and print them."
+        "text": "Assign your name, age, and CGPA to three variables using a single assignment statement and print them.",
+        "input": None
     },
     {
         "id": "Ex4_Q3_UnicodeChar",
         "title": "Exercise 4 - Q3: Unicode of Character",
         "image": "questions/ex_page_3.png",
-        "text": "Read a single character from the user and display its Unicode value."
+        "text": "Read a single character from the user and display its Unicode value.",
+        "input": "A"
     },
     {
         "id": "Ex4_Q4_StringIndex",
         "title": "Exercise 4 - Q4: String Character Indexing",
         "image": "questions/ex_page_3.png",
-        "text": "Read a string from user and display: First character, Last character, Second character, Second last character."
+        "text": "Read a string from user and display: First character, Last character, Second character, Second last character.",
+        "input": "ABHYUDAY"
     },
     # Ex 5
     {
         "id": "Ex5_Q1_Supermarket",
         "title": "Exercise 5 - Q1: Supermarket Bill Arithmetic",
         "image": "questions/ex_page_4.png",
-        "text": "Read price of two products. Display: Total price, Price difference, Product, Division, Remainder, Floor division."
+        "text": "Read price of two products. Display: Total price, Price difference, Product, Division, Remainder, Floor division.",
+        "input": "50\n70"
     },
     {
         "id": "Ex5_Q2_Relational",
         "title": "Exercise 5 - Q2: Relational Operations on Marks",
         "image": "questions/ex_page_4.png",
-        "text": "Read marks of Student A and Student B. Display results of relational operations: ==, !=, >, <, >=, <=."
+        "text": "Read marks of Student A and Student B. Display results of relational operations: ==, !=, >, <, >=, <=.",
+        "input": "50\n70"
     },
     {
         "id": "Ex5_Q3_Bitwise",
         "title": "Exercise 5 - Q3: Bitwise Operations",
         "image": "questions/ex_page_4.png",
-        "text": "Read two integer permission codes. Display binary representations and perform: AND, OR, XOR, Bitwise Complement of first code, Left shift 1, Right shift 1. Display decimal and binary."
+        "text": "Read two integer permission codes. Display binary representations and perform: AND, OR, XOR, Bitwise Complement of first code, Left shift 1, Right shift 1. Display decimal and binary.",
+        "input": "50\n70"
     },
     {
         "id": "Ex5_Q4_Precedence",
         "title": "Exercise 5 - Q4: Operator Precedence",
         "image": "questions/ex_page_4.png",
-        "text": "Evaluate and display: 5+3*2, (5+3)*2, 2**3*2, 2**3**2."
+        "text": "Evaluate and display: 5+3*2, (5+3)*2, 2**3*2, 2**3**2.",
+        "input": None
     },
     # Ex 6
     {
         "id": "Ex6_Q1_Attendance",
         "title": "Exercise 6 - Q1: Attendance Check",
         "image": "questions/ex_page_5.png",
-        "text": "Get attendance percentage. If >= 75 print 'Student is permitted', else 'Student not permitted'."
+        "text": "Get attendance percentage. If >= 75 print 'Student is permitted', else 'Student not permitted'.",
+        "input": "100"
     },
     {
         "id": "Ex6_Q2_Multiple",
         "title": "Exercise 6 - Q2: Multiple of 2 or 5",
         "image": "questions/ex_page_5.png",
-        "text": "Find if the given number is a multiple of 2 or 5 or neither of them."
+        "text": "Find if the given number is a multiple of 2 or 5 or neither of them.",
+        "input": "100"
     },
     {
         "id": "Ex6_Q3_Greatest",
         "title": "Exercise 6 - Q3: Greatest of Three Numbers",
         "image": "questions/ex_page_5.png",
-        "text": "Find the greatest of three numbers."
+        "text": "Find the greatest of three numbers.",
+        "input": "100\n200\n300"
     },
     {
         "id": "Ex6_Q4_Grades",
         "title": "Exercise 6 - Q4: Grade Scoring",
         "image": "questions/ex_page_5.png",
-        "text": "Print grade based on marks: >=91: S, 81-90: A, 71-80: B, 61-70: C, 51-60: D, 50: Pass, <50: Fail."
+        "text": "Print grade based on marks: >=91: S, 81-90: A, 71-80: B, 61-70: C, 51-60: D, 50: Pass, <50: Fail.",
+        "input": "100"
     },
     {
         "id": "Ex6_Q5_Rent",
         "title": "Exercise 6 - Q5: House Rent Allowance",
         "image": "questions/ex_page_5.png",
-        "text": "Get salary and house rent. If rent <= 6% of salary print 'Rent allowance matched', else 'Rent allowance not matched'."
+        "text": "Get salary and house rent. If rent <= 6% of salary print 'Rent allowance matched', else 'Rent allowance not matched'.",
+        "input": "100000\n40000"
     },
     # Ex 7
     {
         "id": "Ex7_Q1_Factorial",
         "title": "Exercise 7 - Q1: Factorial using While Loop",
         "image": "questions/ex_page_6.png",
-        "text": "Write a Python program using while loop to print the factorial of a given number."
+        "text": "Write a Python program using while loop to print the factorial of a given number.",
+        "input": "5"
     },
     {
         "id": "Ex7_Q2_Table",
         "title": "Exercise 7 - Q2: Multiplication Table using While Loop",
         "image": "questions/ex_page_6.png",
-        "text": "Write a Python program using while loop to print the multiplication table of a given number."
+        "text": "Write a Python program using while loop to print the multiplication table of a given number.",
+        "input": "5"
     },
     {
         "id": "Ex7_Q3_ReverseDigits",
         "title": "Exercise 7 - Q3: Reverse Digits using While Loop",
         "image": "questions/ex_page_6.png",
-        "text": "Get an integer. Display digits in reverse order using while loop with arithmetic operators only."
+        "text": "Get an integer. Display digits in reverse order using while loop with arithmetic operators only.",
+        "input": "123"
     },
     # Ex 8
     {
         "id": "Ex8_Q1_Denomination",
         "title": "Exercise 8 - Q1: Currency Denomination",
         "image": "questions/ex_page_7.png",
-        "text": "Write a python program using loops to print the denomination of a given amount."
+        "text": "Write a python program using loops to print the denomination of a given amount.",
+        "input": "1357"
     },
     {
         "id": "Ex8_Q2_NumberPattern",
         "title": "Exercise 8 - Q2: Descending Number Pattern",
         "image": "questions/ex_page_7.png",
-        "text": "Write a python program using loops to print descending number pattern: 5 4 3 2 1 down to 1."
+        "text": "Write a python program using loops to print descending number pattern: 5 4 3 2 1 down to 1.",
+        "input": None
     },
     {
         "id": "Ex8_Q3_StarPattern",
         "title": "Exercise 8 - Q3: Star Pyramid Pattern",
         "image": "questions/ex_page_7.png",
-        "text": "Write a python program using loops to print star pyramid pattern: *, ***, *****, *******."
+        "text": "Write a python program using loops to print star pyramid pattern: *, ***, *****, *******.",
+        "input": None
     }
 ]
 
@@ -536,6 +566,84 @@ def reset_editor(driver):
     time.sleep(0.3)
 
 
+def inject_custom_input(driver, test_input: str) -> bool:
+    """Toggles 'Provide Custom Input' if needed and injects testcase input."""
+    if not test_input:
+        return clear_custom_input(driver)
+
+    success = driver.execute_script("""
+        var inputVal = arguments[0];
+        // 1. Ensure 'Provide Custom Input' checkbox is checked
+        var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        for (var i = 0; i < checkboxes.length; i++) {
+            var parentTxt = (checkboxes[i].parentElement ? checkboxes[i].parentElement.innerText : '').toLowerCase();
+            if (parentTxt.includes('custom input') && !checkboxes[i].checked) {
+                checkboxes[i].click();
+            }
+        }
+
+        var allElems = document.querySelectorAll('label, div, span, button');
+        for (var i = 0; i < allElems.length; i++) {
+            var txt = (allElems[i].innerText || '').trim().toLowerCase();
+            if (txt === 'provide custom input') {
+                var cb = allElems[i].querySelector('input[type="checkbox"]');
+                if (cb && !cb.checked) {
+                    cb.click();
+                } else if (!cb) {
+                    allElems[i].click();
+                }
+            }
+        }
+
+        // 2. Find and fill the textarea for custom input
+        var textareas = document.querySelectorAll('textarea');
+        var targetTa = null;
+        for (var i = 0; i < textareas.length; i++) {
+            var ta = textareas[i];
+            if (ta.closest && ta.closest('.ace_editor, .monaco-editor')) continue;
+            var ph = (ta.getAttribute('placeholder') || '').toLowerCase();
+            var id = (ta.id || '').toLowerCase();
+            var cls = (ta.className || '').toLowerCase();
+            if (ph.includes('custom') || ph.includes('input') || id.includes('custom') || id.includes('input') || cls.includes('custom') || cls.includes('input')) {
+                targetTa = ta;
+                break;
+            }
+            targetTa = ta;
+        }
+
+        if (targetTa) {
+            targetTa.value = inputVal;
+            targetTa.dispatchEvent(new Event('input', { bubbles: true }));
+            targetTa.dispatchEvent(new Event('change', { bubbles: true }));
+            return true;
+        }
+        return false;
+    """, test_input)
+    time.sleep(0.3)
+    return success
+
+
+def clear_custom_input(driver):
+    """Clears custom input and unchecks custom input toggle if active."""
+    driver.execute_script("""
+        var textareas = document.querySelectorAll('textarea');
+        for (var i = 0; i < textareas.length; i++) {
+            var ta = textareas[i];
+            if (ta.closest && ta.closest('.ace_editor, .monaco-editor')) continue;
+            ta.value = '';
+            ta.dispatchEvent(new Event('input', { bubbles: true }));
+        }
+        var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        for (var i = 0; i < checkboxes.length; i++) {
+            var parentTxt = (checkboxes[i].parentElement ? checkboxes[i].parentElement.innerText : '').toLowerCase();
+            if (parentTxt.includes('custom input') && checkboxes[i].checked) {
+                checkboxes[i].click();
+            }
+        }
+    """)
+    time.sleep(0.2)
+
+
 def scroll_editor_to_top(driver):
     """Scrolls page and editor view to top for clean code screenshot."""
     driver.execute_script("""
@@ -726,6 +834,14 @@ def run_full_pipeline(variant="2", is_auto=None):
         driver.save_screenshot(str(code_ss_path))
         print(f"[✓] Saved Code Screenshot: {code_ss_path}")
 
+        # 3.5. Inject custom testcase input if question requires it
+        custom_input = q.get("input")
+        if custom_input:
+            print(f"[*] Providing Custom Input ({repr(custom_input[:25])})...")
+            inject_custom_input(driver, custom_input)
+        else:
+            clear_custom_input(driver)
+
         # 4. Click 'Compile & Run'
         print("[*] Executing code (Clicking 'Compile & Run')...")
         click_compile_and_run(driver)
@@ -740,6 +856,7 @@ def run_full_pipeline(variant="2", is_auto=None):
 
         # 7. Clean reset for next question
         reset_editor(driver)
+        clear_custom_input(driver)
 
         # 8. Transition
         print(f"[✓] Completed {q_id} successfully!")

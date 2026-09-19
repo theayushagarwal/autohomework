@@ -1,7 +1,6 @@
-name = "Vikram"
-city = "Madurai"
-cgpa = 8.90
+name = 'Rahul'
+cgpa = 8.75
 student = True
-number = 3+5j
 language = "Python"
-print("Student Info:", name, city, cgpa, student, number, language)
+print("Valid variables:")
+print(name, cgpa, student, language)

@@ -1,9 +1,5 @@
-lines = 5
-row = lines
-while row >= 1:
-    col = row
-    while col >= 1:
-        print(col, end="\t")
-        col -= 1
+n = 5
+for i in range(n, 0, -1):
+    for j in range(i, 0, -1):
+        print(j, end="\t")
     print()
-    row -= 1

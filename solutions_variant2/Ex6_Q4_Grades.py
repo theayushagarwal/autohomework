@@ -1,17 +1,15 @@
-score = 76
-print("Marks scored:", score)
-if score >= 91:
-    res = "S"
-elif score >= 81:
-    res = "A"
-elif score >= 71:
-    res = "B"
-elif score >= 61:
-    res = "C"
-elif score >= 51:
-    res = "D"
-elif score == 50:
-    res = "Pass"
+a = int(input())
+if a >= 91:
+    print("Grade:S")
+elif (a > 80 and a < 91):
+    print("Grade:A")
+elif (a > 70 and a < 81):
+    print("Grade:B")
+elif (a > 60 and a < 71):
+    print("Grade:C")
+elif (a > 50 and a < 61):
+    print("Grade:D")
+elif a == 50:
+    print("Pass")
 else:
-    res = "Fail"
-print(f"Final Grade: {res}")
+    print("Fail")

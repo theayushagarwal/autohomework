@@ -1,14 +1,14 @@
-student_record = {
-    "Name": "Pooja Hegde",
-    "Age": 19,
-    "Department": "CSE Core",
-    "University": "VIT",
-    "Mobile": "9845123456"
-}
-
-print("-----------------------------------")
-print("          BIO-DATA CARD            ")
-print("-----------------------------------")
-for k, v in student_record.items():
-    print(f"{k:<12}: {v}")
-print("-----------------------------------")
+name = input("Enter Name: ")
+age = input("Enter Age: ")
+dept = input("Enter Department: ")
+univ = input("Enter University: ")
+mob = input("Enter Mobile Number: ")
+print("*" * 33)
+print("        STUDENT BIO CARD         ")
+print("*" * 33)
+print("Name        : " + name)
+print("Age         : " + age)
+print("Department  : " + dept)
+print("University  : " + univ)
+print("Mobile      : " + mob)
+print("*" * 33)

@@ -1,16 +1,14 @@
-std_name = "Rohan Sharma"
-std_age = 18
-std_dept = "Computer Science"
-std_uni = "VIT Vellore"
-std_phone = "9123456780"
-
-border = "=" * 40
-print(border)
-print("            STUDENT BIO CARD            ")
-print(border)
-print("Name        :", std_name)
-print("Age         :", std_age)
-print("Department  :", std_dept)
-print("University  :", std_uni)
-print("Mobile      :", std_phone)
-print(border)
+name = input("Enter Name: ")
+age = input("Enter Age: ")
+department = input("Enter Department: ")
+university = input("Enter University: ")
+mobile = input("Enter Mobile Number: ")
+print("\n*********************************")
+print("        STUDENT BIO CARD         ")
+print("*********************************")
+print("Name        : ", name)
+print("Age         : ", age)
+print("Department  : ", department)
+print("University  : ", university)
+print("Mobile      : ", mobile)
+print("*********************************")

@@ -1,5 +1,5 @@
-limit = 5
-for row in range(limit, 0, -1):
-    for col in range(row, 0, -1):
-        print(col, end="\t")
+rows = 5
+for r in range(rows, 0, -1):
+    for c in range(r, 0, -1):
+        print(c, end="\t")
     print()

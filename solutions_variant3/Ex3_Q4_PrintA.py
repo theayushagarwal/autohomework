@@ -1,1 +1,2 @@
-print(chr(ord('B') - 1))
+code = 65
+print(chr(code))

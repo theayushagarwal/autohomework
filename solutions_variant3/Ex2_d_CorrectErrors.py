@@ -1,6 +1,7 @@
-name = "Rahul"
-city = "Chennai"
+name = 'Rahul'
+print(name)
+city = 'Chennai'
 age = 18
-print("Hello")
-x = complex(3, 4)
-print("Corrected:", name, city, age, x)
+print('Hello')
+x = 3 + 4j
+print(name, city, age, x)

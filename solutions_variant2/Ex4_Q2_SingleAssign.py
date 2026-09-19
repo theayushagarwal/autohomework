@@ -1,2 +1,4 @@
-student_name, student_age, student_cgpa = "Karan", 20, 9.20
-print(f"Student: {student_name} | Age: {student_age} | CGPA: {student_cgpa}")
+name, age, CGPA = "Abhyuday", 18, 10
+print("Name:", name)
+print("Age:", age)
+print("CGPA:", CGPA)

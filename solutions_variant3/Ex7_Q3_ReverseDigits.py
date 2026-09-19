@@ -1,7 +1,7 @@
-val = 74628
-print("Input integer:", val)
-inverted = 0
-while val > 0:
-    inverted = (inverted * 10) + (val % 10)
-    val //= 10
-print("Reversed integer:", inverted)
+num = int(input())
+rev = 0
+while num > 0:
+    digit = num % 10
+    rev = rev * 10 + digit
+    num //= 10
+print(rev)

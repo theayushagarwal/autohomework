@@ -1,17 +1,15 @@
-marks_scored = 93
-print("Student marks:", marks_scored)
-if marks_scored >= 91:
-    g = 'S'
-elif marks_scored >= 81:
-    g = 'A'
-elif marks_scored >= 71:
-    g = 'B'
-elif marks_scored >= 61:
-    g = 'C'
-elif marks_scored >= 51:
-    g = 'D'
-elif marks_scored == 50:
-    g = 'Pass'
+mark = int(input())
+if mark >= 91:
+    print("Grade:S")
+elif mark >= 81:
+    print("Grade:A")
+elif mark >= 71:
+    print("Grade:B")
+elif mark >= 61:
+    print("Grade:C")
+elif mark > 50:
+    print("Grade:D")
+elif mark == 50:
+    print("Pass")
 else:
-    g = 'Fail'
-print("Secured Grade:", g)
+    print("Fail")

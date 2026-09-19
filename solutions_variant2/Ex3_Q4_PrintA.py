@@ -1,2 +1,3 @@
-ascii_val = 60 + 5
-print(chr(ascii_val))
+Asc = 65
+Char = chr(Asc)
+print(Char)

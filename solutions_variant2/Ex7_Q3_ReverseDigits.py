@@ -1,9 +1,5 @@
-original = 98765
-print("Input number:", original)
-reversed_val = 0
-n = original
+n = int(input())
 while n > 0:
     rem = n % 10
-    reversed_val = reversed_val * 10 + rem
-    n //= 10
-print("Reversed number:", reversed_val)
+    print(rem, end="")
+    n = n // 10
